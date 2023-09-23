@@ -3,8 +3,8 @@ import mongoose, { Mongoose } from "mongoose";
 const postSchema = new mongoose.Schema(
   {
     userId: {
-      type: String,
-      required: true,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
     desc: {
       type: String,
@@ -15,8 +15,8 @@ const postSchema = new mongoose.Schema(
       required: true,
     },
     likes: {
-      type: Number,
-      default: [],
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "User",
     },
   },
   {

@@ -1,5 +1,5 @@
-import User from "../model/User.js";
-import { hashedpassword, checkPassword } from "../helper/Password.js";
+import User from "../model/user.js";
+import { hashedpassword, checkPassword } from "../helper/password.js";
 import createToken from "../helper/token.js";
 export const getUser = async (req, res) => {
   try {
@@ -61,7 +61,7 @@ export const login = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
-export const updateProfile = async (req, res) => {
+export const profile = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
     if (user) {
@@ -88,7 +88,7 @@ export const updateProfile = async (req, res) => {
   }
 };
 
-export const deleteUser = async (req, res) => {
+export const deleteAccount = async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(req.user.id);
     if (user) {

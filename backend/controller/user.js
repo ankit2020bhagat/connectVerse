@@ -42,7 +42,9 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
+
     const user = await User.findOne({ email });
+
     if (!user) {
       return res.json({ message: "Incorrect email" });
     }
@@ -62,6 +64,19 @@ export const login = async (req, res) => {
   }
 };
 export const profile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (user) {
+      return res.status(200).json({ Profile: user });
+    } else {
+      return res.status(404).json({ message: "User not found" });
+    }
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+export const updateProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
     if (user) {
@@ -180,7 +195,6 @@ export const followerList = async (req, res) => {
       return res.status(200).json({ follower: followerList });
     }
   } catch (err) {
-    console.log(err);
     return res.status(500).json({ message: "Internal server error" });
   }
 };

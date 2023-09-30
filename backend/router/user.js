@@ -7,19 +7,21 @@ import {
   followingList,
   getUser,
   login,
-  profile,
+  updateProfile,
   register,
   unFollow,
+  profile,
 } from "../controller/user.js";
 import auth from "../middleware/authtoken.js";
-userRouter.get("/", getUser);
-userRouter.post("/register", register);
-userRouter.get("/login", login);
-userRouter.put("/profile", auth, profile);
-userRouter.delete("/delete", auth, deleteAccount);
+
+userRouter.post("/signup", register);
+userRouter.post("/login", login);
+userRouter.put("/updateprofile", auth, updateProfile);
 userRouter.put("/follow", auth, follow);
 userRouter.put("/unFollow", auth, unFollow);
+userRouter.delete("/delete", auth, deleteAccount);
 userRouter.get("/following", auth, followingList);
 userRouter.get("/follow", auth, followerList);
-
+userRouter.get("/profile", auth, profile);
+// userRouter.get("/", getUser);
 export default userRouter;

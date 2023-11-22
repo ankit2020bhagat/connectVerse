@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { ContentPasteOffSharp, MoreVert } from "@mui/icons-material";
+import { MoreVert } from "@mui/icons-material";
 import { Users } from "../../dummyData";
 import "./post.css";
+
 const Post = ({ post }) => {
   const [like, setLike] = useState(post?.like);
   const [isLike, setIsLiked] = useState(false);
-
+  const PF = "http://localhost:5173/assets/";
   const handleLike = () => {
     setLike(isLike ? like + 1 : like - 1);
     setIsLiked(!isLike);
@@ -33,19 +34,19 @@ const Post = ({ post }) => {
         </div>
         <div className="postCenter">
           <span className="postText">{post?.desc}</span>
-          <img className="postImg" src={post?.photo} alt="" />
+          <img className="postImg" src={PF + post?.photo} alt="" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
             <img
               className="likeIcon"
-              src="assets/like.png"
+              src={`${PF}like.png`}
               alt=""
               onClick={handleLike}
             />
             <img
               className="likeIcon"
-              src="assets/heart.png"
+              src={`${PF}heart.png`}
               alt=""
               onClick={handleLike}
             />

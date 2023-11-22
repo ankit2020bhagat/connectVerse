@@ -23,6 +23,7 @@ const RightBar = ({ profile }) => {
   };
 
   const ProfileRightbar = () => {
+    const PF = "http://localhost:5173/assets/";
     return (
       <>
         <h4 className="rightbarTitle"> User Information</h4>
@@ -44,7 +45,7 @@ const RightBar = ({ profile }) => {
         <div className="rightbarFollowings">
           <div className="rightbarFollowing">
             <img
-              src="assets/Persons/25.jpg"
+              src={`${PF}Persons/25.jpg`}
               alt=""
               className="rightbarFollowingImg"
             />
@@ -52,7 +53,7 @@ const RightBar = ({ profile }) => {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="assets/Persons/33.jpg"
+              src={`${PF}Persons/33.jpg`}
               alt=""
               className="rightbarFollowingImg"
             />
@@ -60,7 +61,7 @@ const RightBar = ({ profile }) => {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="assets/Persons/34.jpg"
+              src={`${PF}Persons/34.jpg`}
               alt=""
               className="rightbarFollowingImg"
             />
@@ -68,7 +69,7 @@ const RightBar = ({ profile }) => {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="assets/Persons/35.jpg"
+              src={`${PF}Persons/35.jpg`}
               alt=""
               className="rightbarFollowingImg"
             />
@@ -76,7 +77,7 @@ const RightBar = ({ profile }) => {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="assets/Persons/43.jpg"
+              src={`${PF}Persons/43.jpg`}
               alt=""
               className="rightbarFollowingImg"
             />
@@ -84,7 +85,7 @@ const RightBar = ({ profile }) => {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="assets/Persons/67.jpg"
+              src={`${PF}Persons/67.jpg`}
               alt=""
               className="rightbarFollowingImg"
             />

@@ -3,7 +3,7 @@ import { hashedpassword, checkPassword } from "../helper/password.js";
 import createToken from "../helper/token.js";
 export const getUser = async (req, res) => {
   try {
-    const user = await User.find();
+    const user = await User.find(req.params.id);
     if (user.length > 0) {
       return res.status(201).json({ User: user });
     } else {
@@ -29,9 +29,7 @@ export const register = async (req, res) => {
       password: hashpassword,
     });
     if (user) {
-      return res
-        .status(201)
-        .json({ message: "Registration successfully", user: user });
+      return res.status(201).json({ message: "Registration successfully" });
     }
   } catch (err) {
     console.log(err);
@@ -114,6 +112,7 @@ export const deleteAccount = async (req, res) => {
       return res.status(404).json({ meesage: "User not found" });
     }
   } catch (err) {
+    console.log(err);
     return res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -123,7 +122,7 @@ export const follow = async (req, res) => {
     const user = await User.findById(req.user.id);
 
     if (requestUser && user) {
-      requestUser.followings.push(req.user.id);
+      requestUser.following.push(req.user.id);
       user.followers.push(req.params.id);
       await requestUser.save();
       await user.save();
@@ -143,8 +142,7 @@ export const unFollow = async (req, res) => {
     console.log(req.params.id);
     console.log(req.user.id);
     if (requestUser && user) {
-      const newfollowList = user.followings.filter((item) => {
-        requesteduserFollowList;
+      const newfollowList = user.following.filter((item) => {
         return item.toString() !== req.params.id;
       });
       console.log(newfollowList);
@@ -153,7 +151,7 @@ export const unFollow = async (req, res) => {
         return item.toString() !== req.user.id;
       });
       console.log(requesteduserFollowList);
-      user.followings = newfollowList;
+      user.following = newfollowList;
       requestUser.followers = requesteduserFollowList;
       await user.save();
       await requestUser.save();
@@ -167,17 +165,18 @@ export const unFollow = async (req, res) => {
 
 export const followingList = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).populate("followings");
+    const user = await User.findById(req.user.id).populate("following");
     if (user) {
-      const following = user.followings;
+      const following = user.following;
       const followingList = [];
       following.map((friend) => {
         const { _id, username, profilePicture } = friend;
-        followerList.push({ _id, username, profilePicture });
+        followingList.push({ _id, username, profilePicture });
       });
       return res.status(200).json({ following: followingList });
     }
   } catch (err) {
+    console.log(err);
     return res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -195,6 +194,7 @@ export const followerList = async (req, res) => {
       return res.status(200).json({ follower: followerList });
     }
   } catch (err) {
+    console.log(err);
     return res.status(500).json({ message: "Internal server error" });
   }
 };

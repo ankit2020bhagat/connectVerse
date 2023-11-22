@@ -5,6 +5,7 @@ import Feed from "../../feed/Feed";
 import RightBar from "../../rightBar/RightBar";
 import "./profile.css";
 const Profile = () => {
+  const PF = "http://localhost:5173/assets/";
   return (
     <>
       <TopBar />
@@ -14,12 +15,12 @@ const Profile = () => {
           <div className="profileRightTop">
             <div className="profilecover">
               <img
-                src="assets/Persons/4.jpg"
+                src={`${PF}Persons/4.jpg`}
                 alt=""
                 className="profileCoverImg"
               />
               <img
-                src="assets/Persons/25.jpg"
+                src={`${PF}Persons/25.jpg`}
                 alt=""
                 className="profileUserImg"
               />
@@ -31,7 +32,7 @@ const Profile = () => {
           </div>
           <div className="profileRightBottom">
             <Feed />
-            <RightBar />
+            <RightBar profile />
           </div>
         </div>
       </div>

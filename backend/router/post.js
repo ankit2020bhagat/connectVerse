@@ -9,9 +9,9 @@ import {
 import auth from "../middleware/authtoken.js";
 const routerPost = express.Router();
 
-routerPost.post("/", auth, createPost);
+routerPost.post("/", createPost);
 routerPost.put("/update/:id", auth, updatePost);
 routerPost.delete("/delete/:id", auth, deletePost);
 routerPost.put("/like/:id", auth, likeDislike);
-routerPost.get("/userpost", auth, getUserPost);
+routerPost.get("/userpost", getUserPost);
 export default routerPost;

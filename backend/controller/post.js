@@ -2,7 +2,7 @@ import Post from "../model/post.js";
 export const createPost = async (req, res) => {
   try {
     const post = new Post({
-      userId: req.user.id, // Manually specify the userId
+      userId: req.body.userId, // Manually specify the userId
       desc: req.body.desc, // Update desc using req.body
       image: req.body.image, // Update image using req.body
       likes: req.body.likes, // Update likes using req.body
@@ -15,6 +15,7 @@ export const createPost = async (req, res) => {
         .json({ message: "Post created successfully", post: savedPost });
     }
   } catch (err) {
+    console.log(err);
     return res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -68,7 +69,7 @@ export const likeDislike = async (req, res) => {
 
 export const getUserPost = async (req, res) => {
   try {
-    const post = await Post.find({ userId: req.user.id });
+    const post = await Post.find();
     if (post) {
       return res.status(200).json({ Post: post });
     } else {

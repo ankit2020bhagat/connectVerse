@@ -3,7 +3,7 @@ import { hashedpassword, checkPassword } from "../helper/password.js";
 import createToken from "../helper/token.js";
 export const getUser = async (req, res) => {
   try {
-    const user = await User.find(req.params.id);
+    const user = await User.find();
     if (user.length > 0) {
       return res.status(201).json({ User: user });
     } else {

@@ -23,5 +23,5 @@ userRouter.put("/unfollow/:id", auth, unFollow);
 userRouter.delete("/delete", auth, deleteAccount);
 userRouter.get("/following", auth, followingList);
 userRouter.get("/follower", auth, followerList);
-userRouter.get("/:id", getUser);
+userRouter.get("/", getUser);
 export default userRouter;

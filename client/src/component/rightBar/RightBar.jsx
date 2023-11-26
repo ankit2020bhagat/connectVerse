@@ -1,12 +1,17 @@
 import "./rightbar.css";
 import { Users } from "../../dummyData";
 import Online from "../online/Online";
+const PF = "http://localhost:5173/assets/";
 const RightBar = ({ profile }) => {
   const HomeRightbar = () => {
     return (
       <>
         <div className="birthdayContainer">
-          <img className="birthdayImg" src="/assets/gift.png" alt=""></img>
+          <img
+            className="birthdayImg"
+            src="http://localhost:5173/assets/Persons/gift.png"
+            alt=""
+          ></img>
           <spna className="birthdayText">
             <b>Ankit</b> and <b> 3 others </b>have birthday today
           </spna>
@@ -23,7 +28,6 @@ const RightBar = ({ profile }) => {
   };
 
   const ProfileRightbar = () => {
-    const PF = "http://localhost:5173/assets/";
     return (
       <>
         <h4 className="rightbarTitle"> User Information</h4>
@@ -98,7 +102,7 @@ const RightBar = ({ profile }) => {
   return (
     <div className="rightbar">
       <div className="rightbarWrapper">
-        <ProfileRightbar />
+        <HomeRightbar />
       </div>
     </div>
   );
